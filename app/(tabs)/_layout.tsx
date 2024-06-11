@@ -1,40 +1,88 @@
-import { Tabs } from "expo-router"
+import { View, Text } from "react-native"
 import React from "react"
+import { Tabs } from "expo-router"
+import { COLORS } from "@/constants/colors"
+import Ionicons from "@expo/vector-icons/Ionicons"
+import {} from "react"
 
-import { TabBarIcon } from "@/components/navigation/TabBarIcon"
-import { Colors } from "@/constants/Colors"
-import { useColorScheme } from "@/hooks/useColorScheme"
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme()
-
+const TabsLayout = () => {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-        headerShown: false,
+        tabBarActiveTintColor: COLORS.primary,
+        tabBarLabelStyle: {
+          fontFamily: "googlesans-md",
+          fontSize: 12,
+        },
+        tabBarStyle: {
+          backgroundColor: COLORS.background,
+          paddingTop: 8,
+          paddingBottom: 8,
+          height: 60,
+        },
+        tabBarShowLabel: false,
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "home" : "home-outline"}
-              color={color}
+          tabBarLabel: "Home",
+          tabBarIcon: ({ focused, color, size }) => (
+            <Ionicons
+              name="home-outline"
+              size={24}
+              style={{
+                paddingVertical: 6,
+                paddingHorizontal: 20,
+                borderRadius: 10,
+                color: focused ? COLORS.primary : color,
+                backgroundColor: focused
+                  ? COLORS.primaryAccent
+                  : COLORS.transparent,
+              }}
             />
           ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="camera/index"
         options={{
-          title: "Explore",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "code-slash" : "code-slash-outline"}
-              color={color}
+          tabBarLabel: "Camera",
+          tabBarIcon: ({ focused, color, size }) => (
+            <Ionicons
+              name="camera-outline"
+              size={24}
+              style={{
+                paddingVertical: 6,
+                paddingHorizontal: 20,
+                borderRadius: 10,
+                color: focused ? COLORS.primary : color,
+                backgroundColor: focused
+                  ? COLORS.primaryAccent
+                  : COLORS.transparent,
+              }}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="chat/index"
+        options={{
+          tabBarLabel: "Chat",
+          tabBarIcon: ({ focused, color, size }) => (
+            <Ionicons
+              name="chatbubbles-outline"
+              size={24}
+              color="black"
+              style={{
+                paddingVertical: 6,
+                paddingHorizontal: 20,
+                borderRadius: 10,
+                color: focused ? COLORS.primary : color,
+                backgroundColor: focused
+                  ? COLORS.primaryAccent
+                  : COLORS.transparent,
+              }}
             />
           ),
         }}
@@ -42,3 +90,5 @@ export default function TabLayout() {
     </Tabs>
   )
 }
+
+export default TabsLayout

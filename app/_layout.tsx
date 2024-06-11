@@ -1,3 +1,4 @@
+import { COLORS } from "@/constants/colors"
 import {
   DarkTheme,
   DefaultTheme,
@@ -9,15 +10,14 @@ import * as SplashScreen from "expo-splash-screen"
 import { useEffect } from "react"
 import "react-native-reanimated"
 
-import { useColorScheme } from "@/hooks/useColorScheme"
-
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme()
   const [loaded] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    "googlesans-r": require("../assets/fonts/GoogleSans-Regular.ttf"),
+    "googlesans-md": require("../assets/fonts/GoogleSans-Medium.ttf"),
+    "googlesans-b": require("../assets/fonts/GoogleSans-Bold.ttf"),
   })
 
   useEffect(() => {
@@ -31,11 +31,17 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-    </ThemeProvider>
+    <Stack
+      screenOptions={{
+        statusBarStyle: "dark",
+      }}
+      // initialRouteName=""
+    >
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="(modals)/detail-product"
+        options={{ presentation: "modal" }}
+      />
+    </Stack>
   )
 }
