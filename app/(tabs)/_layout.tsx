@@ -1,9 +1,7 @@
-import { View, Text } from "react-native"
 import React from "react"
 import { Tabs } from "expo-router"
 import { COLORS } from "@/constants/colors"
 import Ionicons from "@expo/vector-icons/Ionicons"
-import {} from "react"
 
 const TabsLayout = () => {
   return (

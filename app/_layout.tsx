@@ -33,7 +33,8 @@ export default function RootLayout() {
   return (
     <Stack
       screenOptions={{
-        statusBarStyle: "dark",
+        statusBarStyle: "light",
+        statusBarColor: COLORS.background,
       }}
       // initialRouteName=""
     >

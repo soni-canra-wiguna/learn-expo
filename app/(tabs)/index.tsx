@@ -1,24 +1,24 @@
-import { View, Text, StyleSheet } from "react-native"
+import { View, Text, StyleSheet, Dimensions } from "react-native"
 import React from "react"
-import { Link } from "expo-router"
-import { COLORS } from "@/constants/colors"
+import ScreenWrapper from "@/components/screen-wrapper"
+import { defaultStyle } from "@/constants/default-styles"
 
 const HomeScreen = () => {
   return (
-    <View>
-      <Text style={{ fontWeight: "400", fontFamily: "" }}>HomeScreen</Text>
-      <Link href={"/(modals)/detail-product"} style={styles.link}>
-        go to detail
-      </Link>
-    </View>
+    <ScreenWrapper title="Lazora">
+      <View style={[styles.container, defaultStyle.wrapper]}>
+        <Text>hello homepage</Text>
+      </View>
+    </ScreenWrapper>
   )
 }
 
 export default HomeScreen
 
+const { height } = Dimensions.get("screen")
+
 const styles = StyleSheet.create({
-  link: {
-    fontSize: 40,
-    color: COLORS.primary,
+  container: {
+    marginTop: 20,
   },
 })
